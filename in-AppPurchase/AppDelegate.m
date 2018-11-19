@@ -24,9 +24,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-   
-    
     return YES;
 }
 
@@ -80,7 +77,7 @@
     return YES;
 }
 
-//Sent when the transaction array has changed (additions or state changes).  Client should check state of transactions and finish as appropriate
+
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray<SKPaymentTransaction *> *)transactions{
     for (SKPaymentTransaction *transaction in transactions) {
         switch (transaction.transactionState) {
@@ -119,29 +116,28 @@
         }
     }
 }
-// Sent when transactions are removed from the queue (via finishTransaction:).
+// 调用finishTransaction后，会调用这个，不用管
 - (void)paymentQueue:(SKPaymentQueue *)queue removedTransactions:(NSArray<SKPaymentTransaction *> *)transactions{
-    // 调用finishTransaction后，会调用这个，不用管
+    
 }
 
-// Sent when an error is encountered while adding transactions from the user's purchase history back to the queue.
+// 用户购买非消耗产品后，可以恢复这些购买，在调用了[[SKPaymentQueue defaultQueue] restoreCompletedTransactions]后，如果还原出错，然后调用这个
 - (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error{
-    // 用户购买非消耗产品后，可以恢复这些购买，在调用了[[SKPaymentQueue defaultQueue] restoreCompletedTransactions]后，如果还原出错，然后调用这个
+    
 }
-
-// Sent when all transactions from the user's purchase history have successfully been added back to the queue.
+//用户购买非消耗产品后，可以恢复这些购买，在调用了[[SKPaymentQueue defaultQueue] restoreCompletedTransactions]后，如果之前有购买的，会回调- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray<SKPaymentTransaction *> *)transactions，然后调用这个
 - (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue{
-    //用户购买非消耗产品后，可以恢复这些购买，在调用了[[SKPaymentQueue defaultQueue] restoreCompletedTransactions]后，如果之前有购买的，会回调- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray<SKPaymentTransaction *> *)transactions，然后调用这个
+    
 }
 
 // Sent when the download state has changed.
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedDownloads:(NSArray<SKDownload *> *)downloads{
-    //
+    
 }
 
-// Sent when a user initiates an IAP buy from the App Store
+// 这里是从app store购买而不是应用内的时候，调用这个
 - (BOOL)paymentQueue:(SKPaymentQueue *)queue shouldAddStorePayment:(SKPayment *)payment forProduct:(SKProduct *)product{
-    // 这里是从app store购买而不是应用内的时候，调用这个
+    
     return YES;
 }
 

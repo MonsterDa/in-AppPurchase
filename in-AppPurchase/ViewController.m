@@ -27,7 +27,7 @@
 }
 
 - (void)buttonEvent{
-    [[AppDelegate theAppDelegate] buysomething:@"com.manman.comiclover.huiyuan.iap.6yuan"];
+    [[AppDelegate theAppDelegate] buysomething:@""];
 }
 
 - (void)didReceiveMemoryWarning {
